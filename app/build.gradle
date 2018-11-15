@@ -20,8 +20,8 @@ android {
 }
 
 dependencies {
-    implementation project(':SPermission')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$supportpack_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+    implementation "com.github.Hydratant:SPermission:$permission_version"
 }

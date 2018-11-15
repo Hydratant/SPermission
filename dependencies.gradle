@@ -16,5 +16,7 @@ ext {
 
     maven_gradle_version = '2.1' // jitpack
 
+    permission_version = '1.0.0'
+
 
 }
