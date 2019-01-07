@@ -59,8 +59,11 @@ class PermissionActivity : AppCompatActivity() {
     private fun checkPermissions() {
         permissions.forEach {
             if (it == Manifest.permission.SYSTEM_ALERT_WINDOW) {
-                if (hasOverlayPermission()) {
+                val hasNotOverlayPermission = !hasOverlayPermission()
+                if (hasNotOverlayPermission) {
                     startOverlay(REQ_OVERLAY_PERMISSION)
+                } else {
+                    resultGranted()
                 }
                 return
             }
@@ -142,7 +145,8 @@ class PermissionActivity : AppCompatActivity() {
         when (requestCode) {
             REQ_OVERLAY_PERMISSION -> {
                 val overlayPermission = android.Manifest.permission.SYSTEM_ALERT_WINDOW
-                if (hasOverlayPermission()) {
+                val hasNotOverlayPermission = !hasOverlayPermission()
+                if (hasNotOverlayPermission) {
                     deniedPermissions.add(overlayPermission)
                     showDenied()
                 } else {

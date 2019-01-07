@@ -60,7 +60,7 @@ fun AppCompatActivity.startOverlay(requestCode: Int) {
 @TargetApi(Build.VERSION_CODES.M)
 private fun Context.getOverlayIntent(): Intent =
         Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             data = Uri.parse("package:" + this@getOverlayIntent.packageName)
         }
 
