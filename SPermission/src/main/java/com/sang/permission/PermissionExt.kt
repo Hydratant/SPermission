@@ -60,10 +60,12 @@ fun AppCompatActivity.startOverlay(requestCode: Int) {
 @TargetApi(Build.VERSION_CODES.M)
 private fun Context.getOverlayIntent(): Intent =
         Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
-//            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            //            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             data = Uri.parse("package:" + this@getOverlayIntent.packageName)
         }
 
-@TargetApi(Build.VERSION_CODES.M)
-fun Context.hasOverlayPermission(): Boolean = Settings.canDrawOverlays(this)
+fun Context.hasOverlayPermission(): Boolean {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) Settings.canDrawOverlays(this)
+    else true
+}
 
