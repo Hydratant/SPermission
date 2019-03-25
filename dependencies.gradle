@@ -6,7 +6,7 @@ ext {
 
     //version
     versionCode = 1
-    versionName = "1.0.3"
+    versionName = "1.0.5"
 
     // android 기본
     kotlin_version = '1.2.71' // Kotlin 버전
