@@ -9,7 +9,7 @@ import java.lang.IllegalArgumentException
 class SPermission {
 
     class Builder(private val context: Context) {
-        var permissions: Array<String>? = null
+        var permissions: Array<out String>? = null
         var onGranted: (() -> Unit)? = null
         var onDenied: ((deniedPermissions: ArrayList<String>) -> Unit)? = null
 

@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.sang.permission.permission
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,24 +12,37 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        test()
-    }
 
-    fun test() {
-//        val test = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//                android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA)
+        type1.setOnClickListener {
+            val test = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA)
 
-        val test = arrayOf(android.Manifest.permission.SYSTEM_ALERT_WINDOW)
-        permission {
-            permissions = test
-            onGranted = {
-                Log.i(TAG, "onGranted Call")
+            permission {
+                permissions = test
+                onGranted = {
+                    Log.i(TAG, "onGranted Call")
+                }
+                onDenied = {
+                    Log.i(TAG, "onDenied Call")
+                }
+                denyMessage = "DenyMessage" // 필수 아님
+                denyTitle = "DenyTitle"  // 필수 아님
             }
-            onDenied = {
-                Log.i(TAG, "onDenied Call")
+        }
+
+        type2.setOnClickListener {
+
+            permission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.CAMERA) {
+                onGranted = {
+                    Log.i(TAG, "onGranted Call")
+                }
+                onDenied = {
+                    Log.i(TAG, "onDenied Call")
+                }
             }
-            denyMessage = "DenyMessage" // 필수 아님
-            denyTitle = "DenyTitle"  // 필수 아님
         }
     }
+
 }
