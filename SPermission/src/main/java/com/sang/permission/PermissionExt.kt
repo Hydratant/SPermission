@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import android.support.v4.content.ContextCompat
+import android.support.v4.app.Fragment
 
 const val REQ_PERMISSION_SETTING = 20
 
@@ -52,6 +53,22 @@ inline fun Activity.permission(vararg permissions: String, setting: SPermission.
         check()
     }
 }
+
+
+inline fun Fragment.permission(setting: SPermission.Builder.() -> Unit) {
+    activity?.permission(setting) ?: throw NullPointerException("Attach Fragment")
+}
+
+inline fun Fragment.permission(vararg permissions: String, setting: SPermission.Builder.() -> Unit) {
+    activity?.let {
+        SPermission.Builder(it).apply {
+            this.permissions = permissions
+            setting()
+            check()
+        }
+    } ?: throw NullPointerException("Attach Fragment")
+}
+
 
 @TargetApi(Build.VERSION_CODES.M)
 fun Activity.startOverlay(requestCode: Int) {

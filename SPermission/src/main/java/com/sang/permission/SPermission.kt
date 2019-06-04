@@ -25,9 +25,9 @@ class SPermission {
                 throw IllegalArgumentException("onGranted is Null")
             }
 
-            if (onDenied == null) {
-                throw IllegalArgumentException("onDenied is Null")
-            }
+//            if (onDenied == null) {
+//                throw IllegalArgumentException("onDenied is Null")
+//            }
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 onGranted?.invoke()

@@ -1,5 +1,6 @@
 package com.sang.permission.demo
 
+import android.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,27 +23,30 @@ class MainActivity : AppCompatActivity() {
                 onGranted = {
                     Log.i(TAG, "onGranted Call")
                 }
-                onDenied = {
-                    Log.i(TAG, "onDenied Call")
-                }
-                denyMessage = "DenyMessage" // 필수 아님
-                denyTitle = "DenyTitle"  // 필수 아님
+//                onDenied = {
+//                    Log.i(TAG, "onDenied Call")
+//                }
+//                denyMessage = "DenyMessage" // 필수 아님
+//                denyTitle = "DenyTitle"  // 필수 아님
             }
         }
 
         type2.setOnClickListener {
+            //
+//            permission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+//                    android.Manifest.permission.CAMERA) {
+//                onGranted = {
+//                    Log.i(TAG, "onGranted Call")
+//                }
+//                onDenied = {
+//                    Log.i(TAG, "onDenied Call")
+//                }
+//            }
 
-            permission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                    android.Manifest.permission.CAMERA) {
-                onGranted = {
-                    Log.i(TAG, "onGranted Call")
-                }
-                onDenied = {
-                    Log.i(TAG, "onDenied Call")
-                }
-            }
+            supportFragmentManager?.beginTransaction()?.replace(R.id.content, MainFragment())?.commit()
         }
+//
     }
 
 }
